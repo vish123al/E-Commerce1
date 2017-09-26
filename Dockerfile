@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 
-COPY composer.json /usr/src/app/
+COPY package.json /usr/src/app/
 RUN npm install
 
 # Bundle app source
