@@ -1,30 +1,153 @@
 {
-    "name": "wellcommerce-admin-theme",
-    "title": "WellCommerce Admin Theme",
-    "license": "MIT",
-    "homepage": "http://wellcommerce.org",
-    "description": "Default theme for WellCommerce",
-    "author": "adrian@wellcommerce.org",
-    "bugs": "https://github.com/WellCommerce/WellCommerce/issues",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/WellCommerce/WellCommerce.git"
+  "name": "wellcommerce/wellcommerce",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "description": "WellCommerce Open-Source edition",
+  "keywords": [
+    "symfony",
+    "e-commerce",
+    "open-source"
+  ],
+  "authors": [
+    {
+      "name": "Adam Piotrowski",
+      "email": "adam@wellcommerce.org"
     },
-    "keywords": [
-        "gulp",
-        "admin",
-        "template",
-        "wellcommerce"
-    ],
-    "devDependencies": {
-        "gulp": "^3.9.0",
-        "gulp-concat": "^2.6.0",
-        "gulp-order": "^1.1.1",
-        "gulp-less": "^3.0.5",
-        "gulp-sourcemaps": "^1.6.0",
-        "gulp-uglify": "^1.5.1",
-        "gulp-uglifycss": "^1.0.5",
-        "merge-stream": "^1.0.0",
-        "gulp-livereload": "^3.8.1"
+    {
+      "name": "WellCommerce Developers",
+      "email": "developers@wellcommerce.org"
     }
+  ],
+  "support": {
+    "email": "support@wellcommerce.org",
+    "issues": "https://github.com/WellCommerce/WellCommerce/issues",
+    "source": "https://github.com/WellCommerce/WellCommerce/"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    },
+    "files": [
+      "app/AppKernel.php"
+    ]
+  },
+  "require": {
+    "php": "^7.0",
+    "ext-gd": "*",
+    "ext-exif": "*",
+    "wellcommerce/composer-plugin": "^1.0@dev",
+    "incenteev/composer-parameter-handler": "v2.1.2",
+    "symfony/symfony": "v3.2.2",
+    "doctrine/orm": "v2.5.4",
+    "twig/extensions": "v1.4.1",
+    "sensio/distribution-bundle": "v5.0.18",
+    "sensio/framework-extra-bundle": "v3.0.21",
+    "knplabs/doctrine-behaviors": "1.4.0",
+    "fzaninotto/faker": "v1.5.0",
+    "willdurand/js-translation-bundle": "2.6.2",
+    "friendsofsymfony/jsrouting-bundle": "^2.0@dev",
+    "symfony-cmf/routing": "1.4.0",
+    "liip/imagine-bundle": "1.7.2",
+    "beberlei/DoctrineExtensions": "v1.0.13",
+    "symfony/monolog-bundle": "v3.0.3",
+    "symfony/swiftmailer-bundle": "v2.4.2",
+    "doctrine/doctrine-migrations-bundle": "v1.2.1",
+    "twig/twig": "v1.31.0",
+    "knplabs/packagist-api": "1.*@dev",
+    "mcuelenaere/composer-revision-plugin": "0.1.*",
+    "nesbot/carbon": "1.22.1",
+    "zendframework/zend-json": "^2.6@dev",
+    "wingu/code-generator": "1.0.5",
+    "sensio/generator-bundle": "v3.1.2",
+    "doctrine/doctrine-fixtures-bundle": "2.3.0",
+    "cache/adapter-bundle": "0.3.2",
+    "cache/apcu-adapter": "0.2.1",
+    "cache/filesystem-adapter": "0.3.0",
+    "cache/doctrine-adapter": "0.5.0",
+    "raven/raven": "^0.13.0",
+    "emanueleminotto/twig-cache-bundle": "^1.0",
+    "zendframework/zendsearch": "dev-master",
+    "elasticsearch/elasticsearch": "v2.3.0",
+    "expalmer/php-bad-words": "0.1.3",
+    "gossi/php-code-generator": "^0.4.1",
+    "algolia/algoliasearch-client-php": "^1.16",
+    "composer/composer": "^1.4",
+    "sunhater/kcfinder": "dev-master",
+    "ikadoc/kcfinder-bundle": "^1.1",
+    "profburial/wkhtmltopdf-binaries": "^0.12.1",
+    "knplabs/knp-snappy-bundle": "^1.4",
+    "league/oauth2-facebook": "^2.0",
+    "league/oauth2-google": "^2.0",
+    "umpirsky/twig-php-function": "^0.2.0",
+    "debril/rss-atom-bundle": "^3.0",
+    "google/recaptcha": "^1.1",
+    "dvdoug/boxpacker": "^2.3"
+  },
+  "replace": {
+    "wellcommerce/api-bundle": "self.version",
+    "wellcommerce/app-bundle": "self.version",
+    "wellcommerce/catalog-bundle": "self.version",
+    "wellcommerce/cms-bundle": "self.version",
+    "wellcommerce/core-bundle": "self.version",
+    "wellcommerce/coupon-bundle": "self.version",
+    "wellcommerce/generator-bundle": "self.version",
+    "wellcommerce/invoice-bundle": "self.version",
+    "wellcommerce/oauth-bundle": "self.version",
+    "wellcommerce/order-bundle": "self.version",
+    "wellcommerce/review-bundle": "self.version",
+    "wellcommerce/search-bundle": "self.version",
+    "wellcommerce/showcase-bundle": "self.version",
+    "wellcommerce/wishlist-bundle": "self.version",
+    "wellcommerce/wellcommerce-default-theme": "self.version"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "WellCommerce\\Bundle\\StandardEditionBundle\\Composer\\ScriptHandler::populateEnvironment",
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+      "WellCommerce\\Bundle\\StandardEditionBundle\\Composer\\ScriptHandler::updateApplication"
+    ],
+    "post-update-cmd": [
+      "WellCommerce\\Bundle\\StandardEditionBundle\\Composer\\ScriptHandler::populateEnvironment",
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+      "WellCommerce\\Bundle\\StandardEditionBundle\\Composer\\ScriptHandler::updateApplication",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+    ],
+    "build-bootstrap": [
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap"
+    ],
+    "post-create-project-cmd": [
+      "WellCommerce\\Bundle\\StandardEditionBundle\\Composer\\ScriptHandler::installApplication"
+    ]
+  },
+  "config": {
+    "bin-dir": "bin",
+    "secure-http": false
+  },
+  "extra": {
+    "symfony-app-dir": "app",
+    "symfony-web-dir": "web",
+    "symfony-assets-install": "relative",
+    "incenteev-parameters": {
+      "file": "app/config/parameters.yml",
+      "env-map": {
+        "search_index_prefix": "SEARCH_INDEX_PREFIX",
+        "secret": "SYMFONY_SECRET",
+        "database_name": "SYMFONY_DATABASE_NAME",
+        "database_user": "SYMFONY_DATABASE_USER",
+        "database_host": "SYMFONY_DATABASE_HOST",
+        "database_password": "SYMFONY_DATABASE_PASSWORD",
+        "prod_log_path": "SYMFONY_PROD_LOG_PATH",
+        "php_bin_path": "PHP_BIN_PATH"
+      }
+    },
+    "branch-alias": {
+      "dev-master": "0.9.x-dev"
+    }
+  }
 }
