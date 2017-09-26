@@ -5,6 +5,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install app dependencies
+RUN rm /usr/src/app/package.json
 COPY composer.json /usr/src/app/
 RUN npm install
 
